@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>main API documentation</title>
+<meta name="description" content="Główny moduł całego projektu. Zawiera pętle w której sprawdzane są zdarzenia
+(wciśnięcia przycisków myszy i klawiatury) oraz rysowane są klatki gry." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>main</code></h1>
+</header>
+<section id="section-intro">
+<p>Główny moduł całego projektu. Zawiera pętle w której sprawdzane są zdarzenia
+(wciśnięcia przycisków myszy i klawiatury) oraz rysowane są klatki gry.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Główny moduł całego projektu. Zawiera pętle w której sprawdzane są zdarzenia
+(wciśnięcia przycisków myszy i klawiatury) oraz rysowane są klatki gry.&#34;&#34;&#34;
+
+import pygame
+import scoreboard as scoreboard
+from window import *
+from units import TrashPanda, Player, Bullet, Button, Point
+from levels import *
+
+player = Player()
+bg_color = (30, 30, 30)
+
+# BULLETS AND PANDAS
+panda_grid = []  #: Lista zawierająca przeciwników znajdujących się na ekranie.
+bullets = []  #: Lista zawierająca pociski znajdujące się na ekranie.
+bullet_counter = 0  #: Licznik częstotliwości pocisków.
+shotting_break = 110
+score = 0  #: Punktacja.
+points = []  #: Lista punktów do zebrania na ekranie.
+
+# LEVELS
+level = 0  #: Zmienna przyjmująca numer poziomu wyświetlanego na ekranie
+end_screen = 3  #: Numer ekranu końcowego.
+
+# BUTTONS
+hover_color = (150, 150, 150)  #: Kolor na jaki podświetlają się przyciski.
+play_button = Button(&#39;PLAY&#39;, 50, 0, 300)  #: Przycisk PLAY.
+scoreboard_button = Button(&#39;SCOREBOARD&#39;, 50, 0, 400)  #: Przycisk SCOREBOARD.
+back_button = Button(&#39;BACK&#39;, 50, 0, 700)  #: Przycisk BACK.
+cancel_button = Button(&#39;CANCEL&#39;, 30, -90, 450)  #: Przycisk CANCEL.
+submit_button = Button(&#39;SUBMIT&#39;, 30, 90, 450)  #: Przycisk SUBMIT.
+
+
+# SUBMIT SCORE
+nick_to_submit = &#39;&#39;  #: Zmienna przechowująca nick gracza, który chce zapisać swój wynik.
+input_box = pygame.Rect(MID - 100, 380, 340, 50)  #: Objekt służący do wpisania nicku gracza na koniec gry.
+color_inactive = pygame.Color(&#39;lightskyblue3&#39;)  #: Nieaktywny kolor ramki wpisywania.
+color_active = pygame.Color(&#39;dodgerblue2&#39;)  #: Aktywny kolor ramki wpisywania.
+color = color_inactive
+active = False  #: Zmienna opisująca stan ramki wpisywania.
+
+create_lvl_1_2(panda_grid)
+
+
+def draw_window(mouse):
+    &#34;&#34;&#34;Rysowanie klatek na ekranie. Przy użyciu instrukcji ```match``` rozdzielam sposoby rysowania klatek
+    ze względu na wartość zmiennej ```level```.
+
+    Args:
+        mouse (pygame.mouse.pos): Obiekt przechowujący dane o pozycji kursora myszy.
+
+    Numeracja:
+        * -1 -&gt; Tablica wyników
+        * 0 -&gt; Menu / Ekran startowy
+        * 1 -&gt; Poziom 1
+        * 2 -&gt; Poziom 2
+        * 3 -&gt; Ekran końcowy / Zapisywanie wyniku.
+    &#34;&#34;&#34;
+    global level, intro, shotting_break, bullets, panda_grid
+    match level:
+        case - 1:
+            WIN.fill(bg_color)
+            pygame.draw.rect(WIN, (50, 50, 50), [MID - 400, MARGIN, 800, 600])
+            draw_scoreboard(10)
+            back_button.hover_button(mouse, bg_color, hover_color)
+            back_button.spawn_button()
+        case 0:
+            WIN.fill(bg_color)
+            WIN.blit(TRASHPANDAS, (MID - TRASHPANDAS.get_rect().width/2, 100))
+            play_button.hover_button(mouse, bg_color, hover_color)
+            scoreboard_button.hover_button(mouse, bg_color, hover_color)
+            play_button.spawn_button()
+            scoreboard_button.spawn_button()
+        case 1:
+            WIN.blit(BG_LVL1, (-10, -10))
+            interface()
+            for bullet in bullets:
+                bullet.spawn()
+            for point in points:
+                point.spawn()
+            spawn_level(panda_grid, bullets, level)
+            player.spawn()
+            if level_finished():
+                shotting_break = 240
+                level += 1
+                panda_grid = []
+                create_lvl_1_2(panda_grid)
+        case 2:
+            WIN.blit(BG_LVL2, (0, -120))
+            interface()
+            for bullet in bullets:
+                bullet.spawn()
+            for point in points:
+                point.spawn()
+            spawn_level(panda_grid, bullets, level)
+            player.spawn()
+            if level_finished():
+                shotting_break = 240
+                level += 1
+                panda_grid = []
+                bullets = []
+                create_lvl_1_2(panda_grid)
+        # TODO
+        case 4:
+            WIN.blit(BG_LVL1, (-10, -10))
+            interface()
+            for bullet in bullets:
+                bullet.spawn()
+            for point in points:
+                point.spawn()
+            spawn_level(panda_grid, bullets, level)
+            player.spawn()
+            if level_finished():
+                bullets = []
+                shotting_break = 240
+                level += 1
+                create_lvl_1_2(panda_grid)
+        case 3:
+            draw_submit_score()
+            cancel_button.hover_button(mouse, bg_color, hover_color)
+            submit_button.hover_button(mouse, bg_color, hover_color)
+            cancel_button.spawn_button()
+            submit_button.spawn_button()
+    pygame.display.update()
+
+
+def draw_scoreboard(records: int):
+    &#34;&#34;&#34;Rysowanie tablicy wyników.
+
+    Args:
+        records (int): Liczba wyświetlanych rekordów.
+    &#34;&#34;&#34;
+    number_of_scores = 0
+    scores = scoreboard.session.query(
+        scoreboard.Score).order_by(scoreboard.Score.score.desc()).all()
+    for s in scores:
+        record = scoreboard_font.render(
+            str(number_of_scores+1)+&#39;. &#39;+str(s.nick), False, text_color)
+        WIN.blit(record, (MID - 380, MARGIN +
+                          20 + number_of_scores*60))
+        record = scoreboard_font.render(
+            str(s.score), False, text_color)
+        WIN.blit(record, (MID + 380 - record.get_rect().width,
+                          MARGIN + 20 + number_of_scores*60))
+        number_of_scores += 1
+        if number_of_scores &gt;= records:
+            return
+
+
+def draw_submit_score():
+    &#34;&#34;&#34;Rysowanie ekranu końcowego / zapisywania wyniku.&#34;&#34;&#34;
+    WIN.fill(bg_color)
+    WIN.blit(YOU_WIN, (MID - YOU_WIN.get_rect().width/2, 100))
+    WIN.blit(NICK, (MID - NICK.get_rect().width/2, 300))
+    # Render the current text.
+    text_surface = scoreboard_font.render(
+        nick_to_submit, False, color)
+    # Resize the box if the text is too long.
+    width = max(340, text_surface.get_width()+10)
+    input_box.w = width
+    # Blit the text.
+    WIN.blit(text_surface, (MID - input_box.w/2 + 5, input_box.y+5))
+    # Blit the input_box rect.
+    pygame.draw.rect(
+        WIN, color, [MID - input_box.w/2, 380, input_box.w, input_box.h], 2)
+
+
+def shot_bullets():
+    &#34;&#34;&#34;Funkcja odpowiadająca za wypuszczanie pocisków.&#34;&#34;&#34;
+    global bullet_counter, bullets, shotting_break
+    for i in range(0, len(bullets)):
+        bullets[i].movement()
+        if bullets[i].rect.y &lt; -30:
+            del bullets[i]
+            break
+    if shotting_break &gt; 0:
+        shotting_break -= 1
+        return
+    if bullet_counter % BULLET_FREQUENCY == 0 and any(panda_grid):
+        n = Bullet(player.rect.x + 20, player.rect.y - 25)
+        bullets.append(n)
+    bullet_counter += 1
+    bullet_counter %= BULLET_FREQUENCY
+
+
+def collect_points():
+    &#34;&#34;&#34;Funkcja odpowiadająca za spadanie i zbieranie bananów - punktów.&#34;&#34;&#34;
+    global score
+    for i in range(0, len(points)):
+        points[i].movement()
+        if points[i].rect.y &gt; WIN_HEIGHT + 30:
+            del points[i]
+            break
+    for i in range(0, len(points)):
+        if points[i].rect.colliderect(player):
+            pygame.mixer.music.play()
+            score += 1
+            del points[i]
+            break
+
+
+def hit_panda():
+    &#34;&#34;&#34;Usuwanie przeciwników po trafieniu.&#34;&#34;&#34;
+    global bullets, score
+    for p in range(len(panda_grid)):
+        for b in range(len(bullets)):
+            if panda_grid[p] and panda_grid[p].rect.colliderect(bullets[b]):
+                banana = Point(panda_grid[p].rect.x+RACCOON.get_width()/2-POINT.get_width()/2, panda_grid[p].rect.y)
+                points.append(banana)
+                panda_grid[p] = 0
+                del bullets[b]
+                break
+
+
+def interface():
+    &#34;&#34;&#34;Rysowanie interfejsu - życie i liczba punktów.&#34;&#34;&#34;
+    global score
+    for i in range(3):
+        WIN.blit(HP, (10 + i*(HP.get_width() + 2), 10))
+    interface_score = myfont.render(str(score), False, text_color)
+    WIN.blit(interface_score, (180, 10))
+
+
+def level_finished():
+    &#34;&#34;&#34;Warunek zakończenia gry - wszyscy przeciwnicy pokonani - nieutworzeni na nowo.&#34;&#34;&#34;
+    global level, end_screen, points
+    if level == end_screen - 1:
+        return not points and not any(panda_grid)
+    return not any(panda_grid)
+
+
+# MAIN LOOP
+def main_loop():
+    &#34;&#34;&#34;Główna pętla programu. Jej kolejne zadania to:
+
+        * Sprawdzanie wszystkich zdarzeń - wciśnieć przycisków.
+        * Wykonywanie ruchu gracza, usuwanie przeciwników oraz wypuszczanie pocisków podczas rozgrywania poziomów.
+        * Wywołanie funkcji rysującej klatki.
+
+    &#34;&#34;&#34;
+    global RUN, level, active, nick_to_submit, color, score
+    while RUN:  #: Główna pętla
+        clock.tick(FPS)
+        mouse = pygame.mouse.get_pos()
+        for event in pygame.event.get():  #: Pętla sprawdzająca wszystkie zdarzenia - wciśnięcia przycisków.
+            if event.type == pygame.QUIT:  #: Zamknięcie okna.
+                RUN = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:  #: Kliknięcie przycisku myszy.
+                if level == 0:
+                    if play_button.mouse_over_button(mouse):
+                        score = 0
+                        level = 1
+                        player.starting_position()
+                    if scoreboard_button.mouse_over_button(mouse):
+                        level = -1
+                elif level == -1 and back_button.mouse_over_button(mouse):
+                    # scoreboard.add_score(&#34;pierun&#34;, 1234)
+                    level = 0
+                elif level == end_screen:
+                    if input_box.collidepoint(event.pos):
+                        active = True
+                    else:
+                        active = False
+                    color = color_active if active else color_inactive
+                    if cancel_button.mouse_over_button(mouse):
+                        level = 0
+                    if submit_button.mouse_over_button(mouse):
+                        scoreboard.add_score(nick_to_submit, score)
+                        # print(nick_to_submit)
+                        level = 0
+                        nick_to_submit = &#39;&#39;
+            elif level == end_screen and event.type == pygame.KEYDOWN:  #: Wprowadzanie nicku do pola umieszczonego na ekranie końcowym.
+                if active:
+                    if event.key == pygame.K_RETURN:
+                        scoreboard.add_score(nick_to_submit, score)
+                        # print(nick_to_submit)
+                        nick_to_submit = &#39;&#39;
+                        level = 0
+                    elif event.key == pygame.K_BACKSPACE:
+                        nick_to_submit = nick_to_submit[:-1]
+                    else:
+                        nick_to_submit += event.unicode
+        if level in [1, 2]:  #: Ruch gracza, usuwanie przeciwników, zbieranie punktów oraz wypuszczanie pocisków podczas rozgrywania poziomów.
+            player.movement()
+            hit_panda()
+            shot_bullets()
+            collect_points()
+        draw_window(mouse)  #: Wywołanie funkcji rysującej klatki.
+
+
+def main():
+    main_loop()  #: Wywołanie głównej pętli.
+    scoreboard.session.close()  #: Zamknięcie sesji zapisu i odczytu z bazy danych.
+    pygame.quit()  #: Zakończenie działania modułu ```pygame```.</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-variables">Global variables</h2>
+<dl>
+<dt id="main.active"><code class="name">var <span class="ident">active</span></code></dt>
+<dd>
+<div class="desc"><p>Zmienna opisująca stan ramki wpisywania.</p></div>
+</dd>
+<dt id="main.back_button"><code class="name">var <span class="ident">back_button</span></code></dt>
+<dd>
+<div class="desc"><p>Przycisk BACK.</p></div>
+</dd>
+<dt id="main.bullet_counter"><code class="name">var <span class="ident">bullet_counter</span></code></dt>
+<dd>
+<div class="desc"><p>Licznik częstotliwości pocisków.</p></div>
+</dd>
+<dt id="main.bullets"><code class="name">var <span class="ident">bullets</span></code></dt>
+<dd>
+<div class="desc"><p>Lista zawierająca pociski znajdujące się na ekranie.</p></div>
+</dd>
+<dt id="main.cancel_button"><code class="name">var <span class="ident">cancel_button</span></code></dt>
+<dd>
+<div class="desc"><p>Przycisk CANCEL.</p></div>
+</dd>
+<dt id="main.color_active"><code class="name">var <span class="ident">color_active</span></code></dt>
+<dd>
+<div class="desc"><p>Aktywny kolor ramki wpisywania.</p></div>
+</dd>
+<dt id="main.color_inactive"><code class="name">var <span class="ident">color_inactive</span></code></dt>
+<dd>
+<div class="desc"><p>Nieaktywny kolor ramki wpisywania.</p></div>
+</dd>
+<dt id="main.end_screen"><code class="name">var <span class="ident">end_screen</span></code></dt>
+<dd>
+<div class="desc"><p>Numer ekranu końcowego.</p></div>
+</dd>
+<dt id="main.hover_color"><code class="name">var <span class="ident">hover_color</span></code></dt>
+<dd>
+<div class="desc"><p>Kolor na jaki podświetlają się przyciski.</p></div>
+</dd>
+<dt id="main.input_box"><code class="name">var <span class="ident">input_box</span></code></dt>
+<dd>
+<div class="desc"><p>Objekt służący do wpisania nicku gracza na koniec gry.</p></div>
+</dd>
+<dt id="main.level"><code class="name">var <span class="ident">level</span></code></dt>
+<dd>
+<div class="desc"><p>Zmienna przyjmująca numer poziomu wyświetlanego na ekranie</p></div>
+</dd>
+<dt id="main.nick_to_submit"><code class="name">var <span class="ident">nick_to_submit</span></code></dt>
+<dd>
+<div class="desc"><p>Zmienna przechowująca nick gracza, który chce zapisać swój wynik.</p></div>
+</dd>
+<dt id="main.panda_grid"><code class="name">var <span class="ident">panda_grid</span></code></dt>
+<dd>
+<div class="desc"><p>Lista zawierająca przeciwników znajdujących się na ekranie.</p></div>
+</dd>
+<dt id="main.play_button"><code class="name">var <span class="ident">play_button</span></code></dt>
+<dd>
+<div class="desc"><p>Przycisk PLAY.</p></div>
+</dd>
+<dt id="main.points"><code class="name">var <span class="ident">points</span></code></dt>
+<dd>
+<div class="desc"><p>Lista punktów do zebrania na ekranie.</p></div>
+</dd>
+<dt id="main.score"><code class="name">var <span class="ident">score</span></code></dt>
+<dd>
+<div class="desc"><p>Punktacja.</p></div>
+</dd>
+<dt id="main.scoreboard_button"><code class="name">var <span class="ident">scoreboard_button</span></code></dt>
+<dd>
+<div class="desc"><p>Przycisk SCOREBOARD.</p></div>
+</dd>
+<dt id="main.submit_button"><code class="name">var <span class="ident">submit_button</span></code></dt>
+<dd>
+<div class="desc"><p>Przycisk SUBMIT.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="main.collect_points"><code class="name flex">
+<span>def <span class="ident">collect_points</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Funkcja odpowiadająca za spadanie i zbieranie bananów - punktów.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def collect_points():
+    &#34;&#34;&#34;Funkcja odpowiadająca za spadanie i zbieranie bananów - punktów.&#34;&#34;&#34;
+    global score
+    for i in range(0, len(points)):
+        points[i].movement()
+        if points[i].rect.y &gt; WIN_HEIGHT + 30:
+            del points[i]
+            break
+    for i in range(0, len(points)):
+        if points[i].rect.colliderect(player):
+            pygame.mixer.music.play()
+            score += 1
+            del points[i]
+            break</code></pre>
+</details>
+</dd>
+<dt id="main.draw_scoreboard"><code class="name flex">
+<span>def <span class="ident">draw_scoreboard</span></span>(<span>records: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Rysowanie tablicy wyników.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>records</code></strong> :&ensp;<code>int</code></dt>
+<dd>Liczba wyświetlanych rekordów.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_scoreboard(records: int):
+    &#34;&#34;&#34;Rysowanie tablicy wyników.
+
+    Args:
+        records (int): Liczba wyświetlanych rekordów.
+    &#34;&#34;&#34;
+    number_of_scores = 0
+    scores = scoreboard.session.query(
+        scoreboard.Score).order_by(scoreboard.Score.score.desc()).all()
+    for s in scores:
+        record = scoreboard_font.render(
+            str(number_of_scores+1)+&#39;. &#39;+str(s.nick), False, text_color)
+        WIN.blit(record, (MID - 380, MARGIN +
+                          20 + number_of_scores*60))
+        record = scoreboard_font.render(
+            str(s.score), False, text_color)
+        WIN.blit(record, (MID + 380 - record.get_rect().width,
+                          MARGIN + 20 + number_of_scores*60))
+        number_of_scores += 1
+        if number_of_scores &gt;= records:
+            return</code></pre>
+</details>
+</dd>
+<dt id="main.draw_submit_score"><code class="name flex">
+<span>def <span class="ident">draw_submit_score</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Rysowanie ekranu końcowego / zapisywania wyniku.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_submit_score():
+    &#34;&#34;&#34;Rysowanie ekranu końcowego / zapisywania wyniku.&#34;&#34;&#34;
+    WIN.fill(bg_color)
+    WIN.blit(YOU_WIN, (MID - YOU_WIN.get_rect().width/2, 100))
+    WIN.blit(NICK, (MID - NICK.get_rect().width/2, 300))
+    # Render the current text.
+    text_surface = scoreboard_font.render(
+        nick_to_submit, False, color)
+    # Resize the box if the text is too long.
+    width = max(340, text_surface.get_width()+10)
+    input_box.w = width
+    # Blit the text.
+    WIN.blit(text_surface, (MID - input_box.w/2 + 5, input_box.y+5))
+    # Blit the input_box rect.
+    pygame.draw.rect(
+        WIN, color, [MID - input_box.w/2, 380, input_box.w, input_box.h], 2)</code></pre>
+</details>
+</dd>
+<dt id="main.draw_window"><code class="name flex">
+<span>def <span class="ident">draw_window</span></span>(<span>mouse)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Rysowanie klatek na ekranie. Przy użyciu instrukcji <code>match</code> rozdzielam sposoby rysowania klatek
+ze względu na wartość zmiennej <code>level</code>.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mouse</code></strong> :&ensp;<code>pygame.mouse.pos</code></dt>
+<dd>Obiekt przechowujący dane o pozycji kursora myszy.</dd>
+</dl>
+<h2 id="numeracja">Numeracja</h2>
+<ul>
+<li>-1 -&gt; Tablica wyników</li>
+<li>0 -&gt; Menu / Ekran startowy</li>
+<li>1 -&gt; Poziom 1</li>
+<li>2 -&gt; Poziom 2</li>
+<li>3 -&gt; Ekran końcowy / Zapisywanie wyniku.</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_window(mouse):
+    &#34;&#34;&#34;Rysowanie klatek na ekranie. Przy użyciu instrukcji ```match``` rozdzielam sposoby rysowania klatek
+    ze względu na wartość zmiennej ```level```.
+
+    Args:
+        mouse (pygame.mouse.pos): Obiekt przechowujący dane o pozycji kursora myszy.
+
+    Numeracja:
+        * -1 -&gt; Tablica wyników
+        * 0 -&gt; Menu / Ekran startowy
+        * 1 -&gt; Poziom 1
+        * 2 -&gt; Poziom 2
+        * 3 -&gt; Ekran końcowy / Zapisywanie wyniku.
+    &#34;&#34;&#34;
+    global level, intro, shotting_break, bullets, panda_grid
+    match level:
+        case - 1:
+            WIN.fill(bg_color)
+            pygame.draw.rect(WIN, (50, 50, 50), [MID - 400, MARGIN, 800, 600])
+            draw_scoreboard(10)
+            back_button.hover_button(mouse, bg_color, hover_color)
+            back_button.spawn_button()
+        case 0:
+            WIN.fill(bg_color)
+            WIN.blit(TRASHPANDAS, (MID - TRASHPANDAS.get_rect().width/2, 100))
+            play_button.hover_button(mouse, bg_color, hover_color)
+            scoreboard_button.hover_button(mouse, bg_color, hover_color)
+            play_button.spawn_button()
+            scoreboard_button.spawn_button()
+        case 1:
+            WIN.blit(BG_LVL1, (-10, -10))
+            interface()
+            for bullet in bullets:
+                bullet.spawn()
+            for point in points:
+                point.spawn()
+            spawn_level(panda_grid, bullets, level)
+            player.spawn()
+            if level_finished():
+                shotting_break = 240
+                level += 1
+                panda_grid = []
+                create_lvl_1_2(panda_grid)
+        case 2:
+            WIN.blit(BG_LVL2, (0, -120))
+            interface()
+            for bullet in bullets:
+                bullet.spawn()
+            for point in points:
+                point.spawn()
+            spawn_level(panda_grid, bullets, level)
+            player.spawn()
+            if level_finished():
+                shotting_break = 240
+                level += 1
+                panda_grid = []
+                bullets = []
+                create_lvl_1_2(panda_grid)
+        # TODO
+        case 4:
+            WIN.blit(BG_LVL1, (-10, -10))
+            interface()
+            for bullet in bullets:
+                bullet.spawn()
+            for point in points:
+                point.spawn()
+            spawn_level(panda_grid, bullets, level)
+            player.spawn()
+            if level_finished():
+                bullets = []
+                shotting_break = 240
+                level += 1
+                create_lvl_1_2(panda_grid)
+        case 3:
+            draw_submit_score()
+            cancel_button.hover_button(mouse, bg_color, hover_color)
+            submit_button.hover_button(mouse, bg_color, hover_color)
+            cancel_button.spawn_button()
+            submit_button.spawn_button()
+    pygame.display.update()</code></pre>
+</details>
+</dd>
+<dt id="main.hit_panda"><code class="name flex">
+<span>def <span class="ident">hit_panda</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Usuwanie przeciwników po trafieniu.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hit_panda():
+    &#34;&#34;&#34;Usuwanie przeciwników po trafieniu.&#34;&#34;&#34;
+    global bullets, score
+    for p in range(len(panda_grid)):
+        for b in range(len(bullets)):
+            if panda_grid[p] and panda_grid[p].rect.colliderect(bullets[b]):
+                banana = Point(panda_grid[p].rect.x+RACCOON.get_width()/2-POINT.get_width()/2, panda_grid[p].rect.y)
+                points.append(banana)
+                panda_grid[p] = 0
+                del bullets[b]
+                break</code></pre>
+</details>
+</dd>
+<dt id="main.interface"><code class="name flex">
+<span>def <span class="ident">interface</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Rysowanie interfejsu - życie i liczba punktów.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def interface():
+    &#34;&#34;&#34;Rysowanie interfejsu - życie i liczba punktów.&#34;&#34;&#34;
+    global score
+    for i in range(3):
+        WIN.blit(HP, (10 + i*(HP.get_width() + 2), 10))
+    interface_score = myfont.render(str(score), False, text_color)
+    WIN.blit(interface_score, (180, 10))</code></pre>
+</details>
+</dd>
+<dt id="main.level_finished"><code class="name flex">
+<span>def <span class="ident">level_finished</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Warunek zakończenia gry - wszyscy przeciwnicy pokonani - nieutworzeni na nowo.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def level_finished():
+    &#34;&#34;&#34;Warunek zakończenia gry - wszyscy przeciwnicy pokonani - nieutworzeni na nowo.&#34;&#34;&#34;
+    global level, end_screen, points
+    if level == end_screen - 1:
+        return not points and not any(panda_grid)
+    return not any(panda_grid)</code></pre>
+</details>
+</dd>
+<dt id="main.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    main_loop()  #: Wywołanie głównej pętli.
+    scoreboard.session.close()  #: Zamknięcie sesji zapisu i odczytu z bazy danych.
+    pygame.quit()  #: Zakończenie działania modułu ```pygame```.</code></pre>
+</details>
+</dd>
+<dt id="main.main_loop"><code class="name flex">
+<span>def <span class="ident">main_loop</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Główna pętla programu. Jej kolejne zadania to:</p>
+<ul>
+<li>Sprawdzanie wszystkich zdarzeń - wciśnieć przycisków.</li>
+<li>Wykonywanie ruchu gracza, usuwanie przeciwników oraz wypuszczanie pocisków podczas rozgrywania poziomów.</li>
+<li>Wywołanie funkcji rysującej klatki.</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main_loop():
+    &#34;&#34;&#34;Główna pętla programu. Jej kolejne zadania to:
+
+        * Sprawdzanie wszystkich zdarzeń - wciśnieć przycisków.
+        * Wykonywanie ruchu gracza, usuwanie przeciwników oraz wypuszczanie pocisków podczas rozgrywania poziomów.
+        * Wywołanie funkcji rysującej klatki.
+
+    &#34;&#34;&#34;
+    global RUN, level, active, nick_to_submit, color, score
+    while RUN:  #: Główna pętla
+        clock.tick(FPS)
+        mouse = pygame.mouse.get_pos()
+        for event in pygame.event.get():  #: Pętla sprawdzająca wszystkie zdarzenia - wciśnięcia przycisków.
+            if event.type == pygame.QUIT:  #: Zamknięcie okna.
+                RUN = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:  #: Kliknięcie przycisku myszy.
+                if level == 0:
+                    if play_button.mouse_over_button(mouse):
+                        score = 0
+                        level = 1
+                        player.starting_position()
+                    if scoreboard_button.mouse_over_button(mouse):
+                        level = -1
+                elif level == -1 and back_button.mouse_over_button(mouse):
+                    # scoreboard.add_score(&#34;pierun&#34;, 1234)
+                    level = 0
+                elif level == end_screen:
+                    if input_box.collidepoint(event.pos):
+                        active = True
+                    else:
+                        active = False
+                    color = color_active if active else color_inactive
+                    if cancel_button.mouse_over_button(mouse):
+                        level = 0
+                    if submit_button.mouse_over_button(mouse):
+                        scoreboard.add_score(nick_to_submit, score)
+                        # print(nick_to_submit)
+                        level = 0
+                        nick_to_submit = &#39;&#39;
+            elif level == end_screen and event.type == pygame.KEYDOWN:  #: Wprowadzanie nicku do pola umieszczonego na ekranie końcowym.
+                if active:
+                    if event.key == pygame.K_RETURN:
+                        scoreboard.add_score(nick_to_submit, score)
+                        # print(nick_to_submit)
+                        nick_to_submit = &#39;&#39;
+                        level = 0
+                    elif event.key == pygame.K_BACKSPACE:
+                        nick_to_submit = nick_to_submit[:-1]
+                    else:
+                        nick_to_submit += event.unicode
+        if level in [1, 2]:  #: Ruch gracza, usuwanie przeciwników, zbieranie punktów oraz wypuszczanie pocisków podczas rozgrywania poziomów.
+            player.movement()
+            hit_panda()
+            shot_bullets()
+            collect_points()
+        draw_window(mouse)  #: Wywołanie funkcji rysującej klatki.</code></pre>
+</details>
+</dd>
+<dt id="main.shot_bullets"><code class="name flex">
+<span>def <span class="ident">shot_bullets</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Funkcja odpowiadająca za wypuszczanie pocisków.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def shot_bullets():
+    &#34;&#34;&#34;Funkcja odpowiadająca za wypuszczanie pocisków.&#34;&#34;&#34;
+    global bullet_counter, bullets, shotting_break
+    for i in range(0, len(bullets)):
+        bullets[i].movement()
+        if bullets[i].rect.y &lt; -30:
+            del bullets[i]
+            break
+    if shotting_break &gt; 0:
+        shotting_break -= 1
+        return
+    if bullet_counter % BULLET_FREQUENCY == 0 and any(panda_grid):
+        n = Bullet(player.rect.x + 20, player.rect.y - 25)
+        bullets.append(n)
+    bullet_counter += 1
+    bullet_counter %= BULLET_FREQUENCY</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-variables">Global variables</a></h3>
+<ul class="two-column">
+<li><code><a title="main.active" href="#main.active">active</a></code></li>
+<li><code><a title="main.back_button" href="#main.back_button">back_button</a></code></li>
+<li><code><a title="main.bullet_counter" href="#main.bullet_counter">bullet_counter</a></code></li>
+<li><code><a title="main.bullets" href="#main.bullets">bullets</a></code></li>
+<li><code><a title="main.cancel_button" href="#main.cancel_button">cancel_button</a></code></li>
+<li><code><a title="main.color_active" href="#main.color_active">color_active</a></code></li>
+<li><code><a title="main.color_inactive" href="#main.color_inactive">color_inactive</a></code></li>
+<li><code><a title="main.end_screen" href="#main.end_screen">end_screen</a></code></li>
+<li><code><a title="main.hover_color" href="#main.hover_color">hover_color</a></code></li>
+<li><code><a title="main.input_box" href="#main.input_box">input_box</a></code></li>
+<li><code><a title="main.level" href="#main.level">level</a></code></li>
+<li><code><a title="main.nick_to_submit" href="#main.nick_to_submit">nick_to_submit</a></code></li>
+<li><code><a title="main.panda_grid" href="#main.panda_grid">panda_grid</a></code></li>
+<li><code><a title="main.play_button" href="#main.play_button">play_button</a></code></li>
+<li><code><a title="main.points" href="#main.points">points</a></code></li>
+<li><code><a title="main.score" href="#main.score">score</a></code></li>
+<li><code><a title="main.scoreboard_button" href="#main.scoreboard_button">scoreboard_button</a></code></li>
+<li><code><a title="main.submit_button" href="#main.submit_button">submit_button</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="main.collect_points" href="#main.collect_points">collect_points</a></code></li>
+<li><code><a title="main.draw_scoreboard" href="#main.draw_scoreboard">draw_scoreboard</a></code></li>
+<li><code><a title="main.draw_submit_score" href="#main.draw_submit_score">draw_submit_score</a></code></li>
+<li><code><a title="main.draw_window" href="#main.draw_window">draw_window</a></code></li>
+<li><code><a title="main.hit_panda" href="#main.hit_panda">hit_panda</a></code></li>
+<li><code><a title="main.interface" href="#main.interface">interface</a></code></li>
+<li><code><a title="main.level_finished" href="#main.level_finished">level_finished</a></code></li>
+<li><code><a title="main.main" href="#main.main">main</a></code></li>
+<li><code><a title="main.main_loop" href="#main.main_loop">main_loop</a></code></li>
+<li><code><a title="main.shot_bullets" href="#main.shot_bullets">shot_bullets</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

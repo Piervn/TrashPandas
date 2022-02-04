@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>window API documentation</title>
+<meta name="description" content="Moduł zawierający bazowe wartości dotyczące rozgrywki …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>window</code></h1>
+</header>
+<section id="section-intro">
+<p>Moduł zawierający bazowe wartości dotyczące rozgrywki.</p>
+<h2 id="grafika">Grafika</h2>
+<ul>
+<li>www.flaticon.com</li>
+<li>www.pexels.com</li>
+</ul>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Moduł zawierający bazowe wartości dotyczące rozgrywki.
+
+    Grafika:
+        * www.flaticon.com
+        * www.pexels.com
+&#34;&#34;&#34;
+
+import pygame
+
+WIN_WIDTH = 1200  #: Szerokość okna
+WIN_HEIGHT = 780  #: Wysokość okna
+
+
+# GAME VARIABLES
+RUN = True  #: Warunek działania głównej pętli pygame.
+
+FPS = 60  #: Liczba klatek na sekundę.
+MID = WIN_WIDTH/2  #: Połowa szerokości ekranu.
+BOTTOM = WIN_HEIGHT-100  # : Dolna część ekranu.
+MARGIN = 60  #: Margines dla obiektów.
+PLAYER_SPEED = 5  #: Szybkość gracza.
+BULLET_SPEED = 6  #: Szybkość pocisków.
+PANDAS_ENTRY_SPEED = 6  #: Szybkość animacji wejścia poziomów.
+ANIM_SPEED = 2
+BULLET_FREQUENCY = 6  #: Częstotliwość pocisków.
+GRAVITY = 0.1 #: Grawitacja dla bananów - punktów.
+
+# WINDOW SETTINGS
+WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))  #: Okno gry
+clock = pygame.time.Clock()
+pygame.display.set_caption(&#34;Trash Pandas&#34;)  #: Tytuł okna
+pygame.font.init()
+pygame.mixer.init()
+
+pygame.mixer.music.load(&#34;assets/bananaeat.mp3&#34;)
+pygame.mixer.music.set_volume(0.4)
+
+# STRINGS
+text_color = (255, 255, 255)
+title = pygame.font.SysFont(&#39;comfortaaregular&#39;, 80)
+myfont = pygame.font.SysFont(&#39;comfortaaregular&#39;, 50)
+scoreboard_font = pygame.font.SysFont(&#39;comfortaaregular&#39;, 30)
+
+TRASHPANDAS = title.render(&#39;TRASH PANDAS&#39;, False, text_color)
+YOU_WIN = title.render(&#39;YOU WIN&#39;, False, text_color)
+NICK = myfont.render(&#39;NICK&#39;, False, text_color)
+
+# IMAGES
+BG_LVL1 = pygame.image.load(&#39;assets/background_lvl1_blur.jpg&#39;) #: Tło 1 poziomu.
+BG_LVL2 = pygame.image.load(&#39;assets/background_lvl2_blur.jpg&#39;) #: Tło 2 poziomu.
+
+SHIP = pygame.image.load(&#39;assets/spaceshipv2.png&#39;) #: Grafika statku.
+RACCOON = pygame.image.load(&#39;assets/racoon64.png&#39;) #: Grafika szopa.
+HP = pygame.image.load(&#39;assets/heart_32.png&#39;) #: Grafika serca.
+BULLET = pygame.image.load(&#39;assets/bullet_fire.png&#39;) #: Grafika pocisku.
+POINT = pygame.image.load(&#39;assets/banana.png&#39;) #: Grafika pocisku.</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-variables">Global variables</h2>
+<dl>
+<dt id="window.BG_LVL1"><code class="name">var <span class="ident">BG_LVL1</span></code></dt>
+<dd>
+<div class="desc"><p>Tło 1 poziomu.</p></div>
+</dd>
+<dt id="window.BG_LVL2"><code class="name">var <span class="ident">BG_LVL2</span></code></dt>
+<dd>
+<div class="desc"><p>Tło 2 poziomu.</p></div>
+</dd>
+<dt id="window.BULLET"><code class="name">var <span class="ident">BULLET</span></code></dt>
+<dd>
+<div class="desc"><p>Grafika pocisku.</p></div>
+</dd>
+<dt id="window.BULLET_FREQUENCY"><code class="name">var <span class="ident">BULLET_FREQUENCY</span></code></dt>
+<dd>
+<div class="desc"><p>Częstotliwość pocisków.</p></div>
+</dd>
+<dt id="window.BULLET_SPEED"><code class="name">var <span class="ident">BULLET_SPEED</span></code></dt>
+<dd>
+<div class="desc"><p>Szybkość pocisków.</p></div>
+</dd>
+<dt id="window.FPS"><code class="name">var <span class="ident">FPS</span></code></dt>
+<dd>
+<div class="desc"><p>Liczba klatek na sekundę.</p></div>
+</dd>
+<dt id="window.GRAVITY"><code class="name">var <span class="ident">GRAVITY</span></code></dt>
+<dd>
+<div class="desc"><p>Grawitacja dla bananów - punktów.</p></div>
+</dd>
+<dt id="window.HP"><code class="name">var <span class="ident">HP</span></code></dt>
+<dd>
+<div class="desc"><p>Grafika serca.</p></div>
+</dd>
+<dt id="window.MARGIN"><code class="name">var <span class="ident">MARGIN</span></code></dt>
+<dd>
+<div class="desc"><p>Margines dla obiektów.</p></div>
+</dd>
+<dt id="window.MID"><code class="name">var <span class="ident">MID</span></code></dt>
+<dd>
+<div class="desc"><p>Połowa szerokości ekranu.</p></div>
+</dd>
+<dt id="window.PANDAS_ENTRY_SPEED"><code class="name">var <span class="ident">PANDAS_ENTRY_SPEED</span></code></dt>
+<dd>
+<div class="desc"><p>Szybkość animacji wejścia poziomów.</p></div>
+</dd>
+<dt id="window.PLAYER_SPEED"><code class="name">var <span class="ident">PLAYER_SPEED</span></code></dt>
+<dd>
+<div class="desc"><p>Szybkość gracza.</p></div>
+</dd>
+<dt id="window.POINT"><code class="name">var <span class="ident">POINT</span></code></dt>
+<dd>
+<div class="desc"><p>Grafika pocisku.</p></div>
+</dd>
+<dt id="window.RACCOON"><code class="name">var <span class="ident">RACCOON</span></code></dt>
+<dd>
+<div class="desc"><p>Grafika szopa.</p></div>
+</dd>
+<dt id="window.RUN"><code class="name">var <span class="ident">RUN</span></code></dt>
+<dd>
+<div class="desc"><p>Warunek działania głównej pętli pygame.</p></div>
+</dd>
+<dt id="window.SHIP"><code class="name">var <span class="ident">SHIP</span></code></dt>
+<dd>
+<div class="desc"><p>Grafika statku.</p></div>
+</dd>
+<dt id="window.WIN"><code class="name">var <span class="ident">WIN</span></code></dt>
+<dd>
+<div class="desc"><p>Okno gry</p></div>
+</dd>
+<dt id="window.WIN_HEIGHT"><code class="name">var <span class="ident">WIN_HEIGHT</span></code></dt>
+<dd>
+<div class="desc"><p>Wysokość okna</p></div>
+</dd>
+<dt id="window.WIN_WIDTH"><code class="name">var <span class="ident">WIN_WIDTH</span></code></dt>
+<dd>
+<div class="desc"><p>Szerokość okna</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-variables">Global variables</a></h3>
+<ul class="two-column">
+<li><code><a title="window.BG_LVL1" href="#window.BG_LVL1">BG_LVL1</a></code></li>
+<li><code><a title="window.BG_LVL2" href="#window.BG_LVL2">BG_LVL2</a></code></li>
+<li><code><a title="window.BULLET" href="#window.BULLET">BULLET</a></code></li>
+<li><code><a title="window.BULLET_FREQUENCY" href="#window.BULLET_FREQUENCY">BULLET_FREQUENCY</a></code></li>
+<li><code><a title="window.BULLET_SPEED" href="#window.BULLET_SPEED">BULLET_SPEED</a></code></li>
+<li><code><a title="window.FPS" href="#window.FPS">FPS</a></code></li>
+<li><code><a title="window.GRAVITY" href="#window.GRAVITY">GRAVITY</a></code></li>
+<li><code><a title="window.HP" href="#window.HP">HP</a></code></li>
+<li><code><a title="window.MARGIN" href="#window.MARGIN">MARGIN</a></code></li>
+<li><code><a title="window.MID" href="#window.MID">MID</a></code></li>
+<li><code><a title="window.PANDAS_ENTRY_SPEED" href="#window.PANDAS_ENTRY_SPEED">PANDAS_ENTRY_SPEED</a></code></li>
+<li><code><a title="window.PLAYER_SPEED" href="#window.PLAYER_SPEED">PLAYER_SPEED</a></code></li>
+<li><code><a title="window.POINT" href="#window.POINT">POINT</a></code></li>
+<li><code><a title="window.RACCOON" href="#window.RACCOON">RACCOON</a></code></li>
+<li><code><a title="window.RUN" href="#window.RUN">RUN</a></code></li>
+<li><code><a title="window.SHIP" href="#window.SHIP">SHIP</a></code></li>
+<li><code><a title="window.WIN" href="#window.WIN">WIN</a></code></li>
+<li><code><a title="window.WIN_HEIGHT" href="#window.WIN_HEIGHT">WIN_HEIGHT</a></code></li>
+<li><code><a title="window.WIN_WIDTH" href="#window.WIN_WIDTH">WIN_WIDTH</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

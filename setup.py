@@ -21,5 +21,5 @@ setup(
         ],
         keywords ='TrashPandas',
         install_requires = ['pygame', 'sqlalchemy'],
-        zip_safe = False
+        zip_safe = True
 )

@@ -62,6 +62,8 @@ class TrashPanda():
             x (int): Pozycja przeciwnika na osi X.
             y (int): Pozycja przeciwnika na osi Y.
         """
+        self.start_x = x
+        self.start_y = y
         self.rect = pygame.Rect(
             x, y, RACCOON.get_width(), RACCOON.get_height())
 
@@ -117,3 +119,25 @@ class Button():
     def spawn_button(self):
         """Pojawianie się przycisku na ekranie."""
         WIN.blit(self.text, (MID - self.half_width + self.offset, self.ypos))
+
+
+class Point():
+    """Klasa opisująca działani3 wypadających punktów - bananów."""
+    def __init__(self, x: int, y: int):
+        """Inicjacja banana - punktu.
+
+        Args:
+            x (int): Pozycja punktu na osi X.
+            y (int): Pozycja punktu na osi Y.
+        """
+        self.rect = pygame.Rect(x, y, POINT.get_width(), POINT.get_height())
+        self.speed = 0
+
+    def spawn(self):
+        """Pojawianie się banana na ekranie."""
+        WIN.blit(POINT, (self.rect.x, self.rect.y))
+
+    def movement(self):
+        """Ruch banana - punktu."""
+        self.speed += GRAVITY
+        self.rect.y += self.speed

@@ -24,12 +24,12 @@ def add_score(nick: str, score: int):
 class Score(Base):
     """Tablica w bazie danych przechowująca rekordy postaci ```nick - wynik```."""
     __tablename__ = 'Scoreboard'
-    id = Column(Integer, primary_key=True) #: Id rekordu.
-    nick = Column(String(20), nullable=False) #: Nazwa gracza.
-    score = Column(Integer, nullable=False) #: Wynik gracza.
+    id = Column(Integer, primary_key=True)  #: Id rekordu.
+    nick = Column(String(20), nullable=False)  #: Nazwa gracza.
+    score = Column(Integer, nullable=False)  #: Wynik gracza.
 
 
-engine = create_engine('sqlite:///scoreboard.db', echo=False) #: Utworzenie bazy danych.
+engine = create_engine('sqlite:///scoreboard.db', echo=False)  #: Utworzenie bazy danych.
 Base.metadata.create_all(engine)
 Session = sessionmaker(engine)
-session = Session() #: Utworzenie sesji dla zapisu i odczytu tablicy.
+session = Session()  #: Utworzenie sesji dla zapisu i odczytu tablicy.

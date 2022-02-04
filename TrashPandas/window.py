@@ -20,14 +20,20 @@ BOTTOM = WIN_HEIGHT-100  # : Dolna część ekranu.
 MARGIN = 60  #: Margines dla obiektów.
 PLAYER_SPEED = 5  #: Szybkość gracza.
 BULLET_SPEED = 6  #: Szybkość pocisków.
-PANDAS_ENTRY_SPEED = 6  #: Szybkość animacji poziomów.
+PANDAS_ENTRY_SPEED = 6  #: Szybkość animacji wejścia poziomów.
+ANIM_SPEED = 2
 BULLET_FREQUENCY = 6  #: Częstotliwość pocisków.
+GRAVITY = 0.1 #: Grawitacja dla bananów - punktów.
 
 # WINDOW SETTINGS
 WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))  #: Okno gry
 clock = pygame.time.Clock()
 pygame.display.set_caption("Trash Pandas")  #: Tytuł okna
 pygame.font.init()
+pygame.mixer.init()
+
+pygame.mixer.music.load("assets/bananaeat.mp3")
+pygame.mixer.music.set_volume(0.4)
 
 # STRINGS
 text_color = (255, 255, 255)
@@ -47,3 +53,4 @@ SHIP = pygame.image.load('assets/spaceshipv2.png') #: Grafika statku.
 RACCOON = pygame.image.load('assets/racoon64.png') #: Grafika szopa.
 HP = pygame.image.load('assets/heart_32.png') #: Grafika serca.
 BULLET = pygame.image.load('assets/bullet_fire.png') #: Grafika pocisku.
+POINT = pygame.image.load('assets/banana.png') #: Grafika pocisku.

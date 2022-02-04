@@ -1,53 +1,54 @@
-"""Główny moduł całego projektu. Zawiera pętle w której sprawdzane są zdarzenia 
+"""Główny moduł całego projektu. Zawiera pętle w której sprawdzane są zdarzenia
 (wciśnięcia przycisków myszy i klawiatury) oraz rysowane są klatki gry."""
 
 import pygame
 import scoreboard as scoreboard
 from window import *
-from units import TrashPanda, Player, Bullet, Button
+from units import TrashPanda, Player, Bullet, Button, Point
 from levels import *
 
 player = Player()
 bg_color = (30, 30, 30)
 
 # BULLETS AND PANDAS
-panda_grid = [] #: Lista zawierająca przeciwników znajdujących się na ekranie.
-bullets = [] #: Lista zawierająca pociski znajdujące się na ekranie.
-bullet_counter = 0 #: Licznik częstotliwości pocisków.
+panda_grid = []  #: Lista zawierająca przeciwników znajdujących się na ekranie.
+bullets = []  #: Lista zawierająca pociski znajdujące się na ekranie.
+bullet_counter = 0  #: Licznik częstotliwości pocisków.
 shotting_break = 110
-score = 0 #: Punktacja.
+score = 0  #: Punktacja.
+points = []  #: Lista punktów do zebrania na ekranie.
 
 # LEVELS
-level = 0 #: Zmienna przyjmująca numer poziomu wyświetlanego na ekranie
-end_screen = 3 #: Numer ekranu końcowego.
+level = 0  #: Zmienna przyjmująca numer poziomu wyświetlanego na ekranie
+end_screen = 3  #: Numer ekranu końcowego.
 
 # BUTTONS
-hover_color = (150, 150, 150) #: Kolor na jaki podświetlają się przyciski.
-play_button = Button('PLAY', 50, 0, 300) #: Przycisk PLAY.
-scoreboard_button = Button('SCOREBOARD', 50, 0, 400) #: Przycisk SCOREBOARD.
-back_button = Button('BACK', 50, 0, 700) #: Przycisk BACK.
-cancel_button = Button('CANCEL', 30, -90, 450) #: Przycisk CANCEL.
-submit_button = Button('SUBMIT', 30, 90, 450) #: Przycisk SUBMIT.
+hover_color = (150, 150, 150)  #: Kolor na jaki podświetlają się przyciski.
+play_button = Button('PLAY', 50, 0, 300)  #: Przycisk PLAY.
+scoreboard_button = Button('SCOREBOARD', 50, 0, 400)  #: Przycisk SCOREBOARD.
+back_button = Button('BACK', 50, 0, 700)  #: Przycisk BACK.
+cancel_button = Button('CANCEL', 30, -90, 450)  #: Przycisk CANCEL.
+submit_button = Button('SUBMIT', 30, 90, 450)  #: Przycisk SUBMIT.
 
 
 # SUBMIT SCORE
-nick_to_submit = '' #: Zmienna przechowująca nick gracza, który chce zapisać swój wynik.
-input_box = pygame.Rect(MID - 100, 380, 340, 50) #: Objekt służący do wpisania nicku gracza na koniec gry.
-color_inactive = pygame.Color('lightskyblue3') #: Nieaktywny kolor ramki wpisywania.
-color_active = pygame.Color('dodgerblue2') #: Aktywny kolor ramki wpisywania.
+nick_to_submit = ''  #: Zmienna przechowująca nick gracza, który chce zapisać swój wynik.
+input_box = pygame.Rect(MID - 100, 380, 340, 50)  #: Objekt służący do wpisania nicku gracza na koniec gry.
+color_inactive = pygame.Color('lightskyblue3')  #: Nieaktywny kolor ramki wpisywania.
+color_active = pygame.Color('dodgerblue2')  #: Aktywny kolor ramki wpisywania.
 color = color_inactive
-active = False #: Zmienna opisująca stan ramki wpisywania.
+active = False  #: Zmienna opisująca stan ramki wpisywania.
 
-create_level(panda_grid)
+create_lvl_1_2(panda_grid)
 
 
 def draw_window(mouse):
     """Rysowanie klatek na ekranie. Przy użyciu instrukcji ```match``` rozdzielam sposoby rysowania klatek
     ze względu na wartość zmiennej ```level```.
-    
+
     Args:
         mouse (pygame.mouse.pos): Obiekt przechowujący dane o pozycji kursora myszy.
-    
+
     Numeracja:
         * -1 -> Tablica wyników
         * 0 -> Menu / Ekran startowy
@@ -55,9 +56,9 @@ def draw_window(mouse):
         * 2 -> Poziom 2
         * 3 -> Ekran końcowy / Zapisywanie wyniku.
     """
-    global level, intro, shotting_break
+    global level, intro, shotting_break, bullets, panda_grid
     match level:
-        case -1:
+        case - 1:
             WIN.fill(bg_color)
             pygame.draw.rect(WIN, (50, 50, 50), [MID - 400, MARGIN, 800, 600])
             draw_scoreboard(10)
@@ -75,23 +76,45 @@ def draw_window(mouse):
             interface()
             for bullet in bullets:
                 bullet.spawn()
-            spawn_level(panda_grid, bullets)
+            for point in points:
+                point.spawn()
+            spawn_level(panda_grid, bullets, level)
             player.spawn()
             if level_finished():
                 shotting_break = 240
                 level += 1
-                create_level(panda_grid)
+                panda_grid = []
+                create_lvl_1_2(panda_grid)
         case 2:
             WIN.blit(BG_LVL2, (0, -120))
             interface()
             for bullet in bullets:
                 bullet.spawn()
-            spawn_level(panda_grid, bullets)
+            for point in points:
+                point.spawn()
+            spawn_level(panda_grid, bullets, level)
             player.spawn()
             if level_finished():
                 shotting_break = 240
                 level += 1
-                create_level(panda_grid)
+                panda_grid = []
+                bullets = []
+                create_lvl_1_2(panda_grid)
+        # TODO
+        case 4:
+            WIN.blit(BG_LVL1, (-10, -10))
+            interface()
+            for bullet in bullets:
+                bullet.spawn()
+            for point in points:
+                point.spawn()
+            spawn_level(panda_grid, bullets, level)
+            player.spawn()
+            if level_finished():
+                bullets = []
+                shotting_break = 240
+                level += 1
+                create_lvl_1_2(panda_grid)
         case 3:
             draw_submit_score()
             cancel_button.hover_button(mouse, bg_color, hover_color)
@@ -153,11 +176,27 @@ def shot_bullets():
     if shotting_break > 0:
         shotting_break -= 1
         return
-    if bullet_counter % BULLET_FREQUENCY == 0:
+    if bullet_counter % BULLET_FREQUENCY == 0 and any(panda_grid):
         n = Bullet(player.rect.x + 20, player.rect.y - 25)
         bullets.append(n)
     bullet_counter += 1
     bullet_counter %= BULLET_FREQUENCY
+
+
+def collect_points():
+    """Funkcja odpowiadająca za spadanie i zbieranie bananów - punktów."""
+    global score
+    for i in range(0, len(points)):
+        points[i].movement()
+        if points[i].rect.y > WIN_HEIGHT + 30:
+            del points[i]
+            break
+    for i in range(0, len(points)):
+        if points[i].rect.colliderect(player):
+            pygame.mixer.music.play()
+            score += 1
+            del points[i]
+            break
 
 
 def hit_panda():
@@ -166,7 +205,8 @@ def hit_panda():
     for p in range(len(panda_grid)):
         for b in range(len(bullets)):
             if panda_grid[p] and panda_grid[p].rect.colliderect(bullets[b]):
-                score += 1
+                banana = Point(panda_grid[p].rect.x+RACCOON.get_width()/2-POINT.get_width()/2, panda_grid[p].rect.y)
+                points.append(banana)
                 panda_grid[p] = 0
                 del bullets[b]
                 break
@@ -183,34 +223,38 @@ def interface():
 
 def level_finished():
     """Warunek zakończenia gry - wszyscy przeciwnicy pokonani - nieutworzeni na nowo."""
+    global level, end_screen, points
+    if level == end_screen - 1:
+        return not points and not any(panda_grid)
     return not any(panda_grid)
 
 
 # MAIN LOOP
 def main_loop():
     """Główna pętla programu. Jej kolejne zadania to:
-    
+
         * Sprawdzanie wszystkich zdarzeń - wciśnieć przycisków.
         * Wykonywanie ruchu gracza, usuwanie przeciwników oraz wypuszczanie pocisków podczas rozgrywania poziomów.
         * Wywołanie funkcji rysującej klatki.
 
     """
-    global RUN, level, active, nick_to_submit, color
-    while RUN: #: Główna pętla
+    global RUN, level, active, nick_to_submit, color, score
+    while RUN:  #: Główna pętla
         clock.tick(FPS)
         mouse = pygame.mouse.get_pos()
-        for event in pygame.event.get(): #: Pętla sprawdzająca wszystkie zdarzenia - wciśnięcia przycisków.
-            if event.type == pygame.QUIT: #: Zamknięcie okna.
+        for event in pygame.event.get():  #: Pętla sprawdzająca wszystkie zdarzenia - wciśnięcia przycisków.
+            if event.type == pygame.QUIT:  #: Zamknięcie okna.
                 RUN = False
-            elif event.type == pygame.MOUSEBUTTONDOWN: #: Kliknięcie przycisku myszy.
+            elif event.type == pygame.MOUSEBUTTONDOWN:  #: Kliknięcie przycisku myszy.
                 if level == 0:
                     if play_button.mouse_over_button(mouse):
+                        score = 0
                         level = 1
                         player.starting_position()
                     if scoreboard_button.mouse_over_button(mouse):
                         level = -1
                 elif level == -1 and back_button.mouse_over_button(mouse):
-                    #scoreboard.add_score("pierun", 1234)
+                    # scoreboard.add_score("pierun", 1234)
                     level = 0
                 elif level == end_screen:
                     if input_box.collidepoint(event.pos):
@@ -225,7 +269,7 @@ def main_loop():
                         # print(nick_to_submit)
                         level = 0
                         nick_to_submit = ''
-            elif level == end_screen and event.type == pygame.KEYDOWN: #: Wprowadzanie nicku do pola umieszczonego na ekranie końcowym.
+            elif level == end_screen and event.type == pygame.KEYDOWN:  #: Wprowadzanie nicku do pola umieszczonego na ekranie końcowym.
                 if active:
                     if event.key == pygame.K_RETURN:
                         scoreboard.add_score(nick_to_submit, score)
@@ -236,13 +280,15 @@ def main_loop():
                         nick_to_submit = nick_to_submit[:-1]
                     else:
                         nick_to_submit += event.unicode
-        if level in [1, 2]: #: Ruch gracza, usuwanie przeciwników oraz wypuszczanie pocisków podczas rozgrywania poziomów. 
+        if level in [1, 2]:  #: Ruch gracza, usuwanie przeciwników, zbieranie punktów oraz wypuszczanie pocisków podczas rozgrywania poziomów.
             player.movement()
             hit_panda()
             shot_bullets()
-        draw_window(mouse) #: Wywołanie funkcji rysującej klatki.
+            collect_points()
+        draw_window(mouse)  #: Wywołanie funkcji rysującej klatki.
+
 
 def main():
-    main_loop() #: Wywołanie głównej pętli.
-    scoreboard.session.close() #: Zamknięcie sesji zapisu i odczytu z bazy danych.
-    pygame.quit() #: Zakończenie działania modułu ```pygame```.
+    main_loop()  #: Wywołanie głównej pętli.
+    scoreboard.session.close()  #: Zamknięcie sesji zapisu i odczytu z bazy danych.
+    pygame.quit()  #: Zakończenie działania modułu ```pygame```.
