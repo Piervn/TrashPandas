@@ -22,7 +22,7 @@ PLAYER_SPEED = 5  #: Szybkość gracza.
 BULLET_SPEED = 6  #: Szybkość pocisków.
 PANDAS_ENTRY_SPEED = 6  #: Szybkość animacji wejścia poziomów.
 ANIM_SPEED = 2
-BULLET_FREQUENCY = 6  #: Częstotliwość pocisków.
+BULLET_FREQUENCY = 20  #: Częstotliwość pocisków.
 GRAVITY = 0.1 #: Grawitacja dla bananów - punktów.
 
 # WINDOW SETTINGS

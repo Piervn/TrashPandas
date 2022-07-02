@@ -292,3 +292,5 @@ def main():
     main_loop()  #: Wywołanie głównej pętli.
     scoreboard.session.close()  #: Zamknięcie sesji zapisu i odczytu z bazy danych.
     pygame.quit()  #: Zakończenie działania modułu ```pygame```.
+
+main()
